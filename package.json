@@ -1,0 +1,23 @@
+{
+  "name": "nodejs-basics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "create": "cross-env FS_DIR=src/fs node src/services/create.js",
+    "copy": "cross-env FS_DIR=src/fs node src/services/copy.js",
+    "rename": "cross-env FS_DIR=src/fs/files node src/services/rename.js",
+    "delete": "cross-env FS_DIR=src/fs/files node src/services/delete.js",
+    "list": "cross-env FS_DIR=src/fs node src/services/list.js",
+    "read": "cross-env FS_DIR=src/fs/files node src/services/read.js",
+    "calchash": "cross-env FS_DIR=src/fs/files node src/services/calc-hash.js",
+    "compress": "cross-env FS_DIR=src/fs/files node src/services/compress.js",
+    "decompress": "cross-env FS_DIR=src/fs/files node src/services/decompress.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
+}
