@@ -19,7 +19,7 @@ async function list(dirName) {
         return files.filter(file => file.isFile()).map(file => file.name).join(', ') || 'no files';
       });
 
-    console.log(`Directory "${dirName}" contains files: "${filesList}"`);
+    console.log(`Directory "${dirName}" contains files: ${filesList}`);
   } catch (error) {
     console.error(error.message);
   }
