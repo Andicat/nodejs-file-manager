@@ -1,14 +1,24 @@
-const fs = require('fs');
+const fs = require("fs");
 
+function printCurrentDir() {
+  console.log(`You are currently in ${process.cwd()}`);
+}
 
+function readableStr(str) {
+  return str
+    .replace(/\n/g, "\\n")
+    .replace(/\r/g, "\\r")
+    .replace(/\t/g, "\\t")
+    .replace(/\f/g, "\\f")
+    .replace(/\v/g, "\\v");
+}
 
 async function checkDirExist(path) {
-  console.log('checkDirExist', path)
   try {
     await fs.promises.access(path);
     return true;
   } catch (err) {
-    if (err.code === 'ENOENT') {
+    if (err.code === "ENOENT") {
       return false;
     }
     throw err;
@@ -16,26 +26,29 @@ async function checkDirExist(path) {
 }
 
 async function createDir(path) {
-  console.log('createDir', path)
   try {
     await fs.promises.mkdir(path);
-  }
-  catch {
-    throw new Error('FS operation failed');
+  } catch {
+    throw new Error("FS operation failed");
   }
 }
 
 async function checkFileExists(path) {
-  console.log('checkFileExists', path)
   try {
     await fs.promises.access(path);
     return true;
   } catch (error) {
-    if (error.code === 'ENOENT') {
+    if (error.code === "ENOENT") {
       return false;
     }
-    throw new Error('FS operation failed');
+    throw new Error("FS operation failed");
   }
 }
 
-module.exports = { checkDirExist, createDir, checkFileExists };
+module.exports = {
+  checkDirExist,
+  createDir,
+  checkFileExists,
+  printCurrentDir,
+  readableStr,
+};

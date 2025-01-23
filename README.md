@@ -1,51 +1,66 @@
-NodeJS basics.
-NodeJS common modules.
+File manager
+1. File manager CLI basic functional requirements
+The file manager should be able to do the following:
 
-https://stackblitz.com/~/github.com/Andicat/nodejs-basics
+Work using CLI
+Read and save user configuration to the .config file in the root project directory
+Perform basic file operations:
+Copy
+Move
+Delete
+Rename
+Utilize the Streams API
+Get information about the host machine operating system
+Perform hash calculations
+Compress and decompress files
+Run the application using:
 
-Task 1
+npm run start -- --username=your_username
+Application Behavior
+After starting the program, it displays the following text in the console:
+Welcome to the File Manager, Username! (Where Username is the value passed as the --username CLI argument.)
 
-Create.js
-Implement a function that creates a new file fresh.txt with the content "I am fresh and young" inside the files folder.
-If the file already exists, throw an error with the message: FS operation failed.
+After the program finishes (when CTRL + C is pressed or .exit command is entered), it displays:
+Thank you for using File Manager, Username, goodbye!
 
-Copy.js
-Implement a function that copies the files folder with all its content into a folder named files_copy at the same level.
-If the files folder doesn't exist or the files_copy folder already exists, throw an error with the message: FS operation failed.
+At startup and after each operation or input, the current working directory is printed in the following format:
+You are currently in path_to_working_directory
 
-Rename.js
-Implement a function that renames the file wrongFilename.txt to properFilename.md.
-If the file wrongFilename.txt doesn't exist or properFilename.md already exists, throw an error with the message: FS operation failed.
+The initial working directory is the current user's home directory. For example, on Windows, it might be system_drive/Users/Username.
+Command Prompt Behavior
+By default, the program prompts users to enter commands and waits for input.
+On receiving an invalid input or unknown operation, it displays:
+Invalid input
 
-Delete.js
-Implement a function that deletes the file fileToRemove.txt.
-If the file fileToRemove.txt doesn't exist, throw an error with the message: FS operation failed.
+and allows the user to enter a new command.
 
-List.js
-Implement a function that prints an array of all filenames from the files folder to the console.
-If the files folder doesn't exist, throw an error with the message: FS operation failed.
+If an error occurs during operation (e.g., attempting to operate on a non-existent file), it displays:
+Operation failed
 
-Read.js
-Implement a function that prints the content of the file fileToRead.txt to the console.
-If the file fileToRead.txt doesn't exist, throw an error with the message: FS operation failed.
+and allows for a new command to be entered.
 
-CalcHash.js
-Implement a function that calculates the SHA256 hash for the file fileToCalculateHashFor.txt and logs it to the console as a hexadecimal value using the Streams API.
+Users cannot navigate above the root directory (e.g., on Windows, the root is the local drive root). If attempted, the working directory remains unchanged.
 
-Compress.js
-Implement a function that compresses the file fileToCompress.txt into archive.gz using zlib and the Streams API.
+2. List of operations:
 
-Decompress.js
-Implement a function that decompresses archive.gz back into fileToCompress.txt with the same content as before compression using zlib and the Streams API.
+Navigation & Working Directory (NWD):
+- up - move up one directory level (no effect at the root directory);
+- cd path_to_directory - navigate to a specified folder (relative or absolute path);
+- ls - list all files and folders in the current directory(names of files (with extensions) and folders, folders listed before files, sorted alphabetically, explicit marking of file/folder type as a column value);
 
-Task 2 (optional)
-Think a bit about file structure. Don't put them all in one directory.
+Basic File Operations:
+- cat path_to_file - read and display file content (uses Readable stream);
+- add new_file_name - ceate an empty file;
+- rn path_to_file new_filename - rename a file (content remains unchanged);
+- cp path_to_file path_to_new_directory - copy a file (uses Readable and Writable streams);
 
-Task 3
-Create npm sripts to run demo of all commands. 
+Operating System Information:
+- os --EOL - get End-Of-Line (EOL) character;
+- os --cpus - get CPU information (model and clock rate of each CPU, and total count);
+- os --homedir - print the home directory;
+- os --username - get the current system username (distinct from the username set at app startup);
+- os --architecture - get CPU architecture;
 
-Task 4 (optional)
-Run your scripts in windows and linux enviromnments.
-
-Task 5
-Link your project with https://stackblitz.com/ for testing. 
+Hash Calculation:
+- hash path_to_file - calculate and print the hash of a file;
+ 
