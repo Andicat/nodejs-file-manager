@@ -1,7 +1,7 @@
 {
-  "name": "nodejs-file-manager",
+  "name": "andicat-file-manager",
   "version": "1.0.0",
-  "description": "",
+  "description": "CLI File Manager",
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
